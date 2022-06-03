@@ -1,0 +1,40 @@
+<div *ngIf="authenticated" class="header">
+    <p>Ваши группы</p>
+    <!-- <ng-select 
+        [items]="courseNames" 
+        style="width: 300px; height: 1.5em; border: 1px solid #000;"
+        [(ngModel)]="selectedCourseName"></ng-select> -->
+
+    <div ngbDropdown  [open]="false" class="d-inline-block">
+        <button type="button" class="btn btn-outline-primary" id="dropdown" ngbDropdownToggle>Ваши группы</button>
+        <div ngbDropdownMenu aria-labelledby="dropdown" *ngFor="let course of courseNames">
+            <button ngbDropdownItem [routerLink]="['/course', course]">{{course}}</button>
+        </div>
+    </div>
+
+    <!-- <div mdbDropdown class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          id="dropdownMenu2"
+          mdbDropdownToggle
+          aria-expanded="false"
+        >
+          Dropdown
+        </button>
+        <ul mdbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <li><button class="dropdown-item" type="button">Action</button></li>
+          <li><button class="dropdown-item" type="button">Another action</button></li>
+          <li>
+            <button class="dropdown-item" type="button">Something else here</button>
+          </li>
+        </ul>
+      </div> -->
+
+    <p>{{user.name}}</p>
+    <button (click)="onLogout()">Выйти</button>
+</div>
+
+<div *ngIf="!authenticated" class="header">
+    <button routerLink="/login">Войти</button>
+</div>
